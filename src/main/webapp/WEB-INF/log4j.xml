@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration debug="true"
+                     xmlns:log4j='http://jakarta.apache.org/log4j/'>
+
+    <appender name="fileAppender" class="org.apache.log4j.FileAppender">
+        <param name="File" value="C:/logs/springdataMongo.log" />
+        <param name="MaxFileSize" value="5MB" />
+        <param name="MaxBackupIndex" value="50" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%-7p %d [%t] %c %x - %m%n" />
+        </layout>
+
+    </appender>
+
+
+    <appender name="stdOut" class="org.apache.log4j.ConsoleAppender">
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%-7p %d [%t] %c %x - %m%n" />
+        </layout>
+    </appender>
+
+    <appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+        <param name="Target" value="System.out"/>
+        <param name="Threshold" value="TRACE"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern"
+                   value="%d{HH:mm:ss} %-5p %c - %m%n"/>
+        </layout>
+
+    </appender>
+    <Logger name="org.mongodb.driver" >
+        <level level="info"/>
+    </Logger>
+    <Logger name="org.springframework.data.document.mongodb">
+        <level value="DEBUG"/>
+    </Logger>
+    <root>
+        <level value="debug" />
+        <appender-ref ref="CONSOLE" />
+        <appender-ref ref="stdOut" />
+        <appender-ref ref="fileAppender" />
+
+    </root>
+
+</log4j:configuration>
